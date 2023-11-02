@@ -1,0 +1,19 @@
+{
+  "name": "tenisu-latelier",
+  "version": "1.0.0",
+  "description": "Technical test for l'Atelier",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HagenoE/Tenisu-LAtelier.git"
+  },
+  "author": "Javaharlal Edward",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HagenoE/Tenisu-LAtelier/issues"
+  },
+  "homepage": "https://github.com/HagenoE/Tenisu-LAtelier#readme"
+}
