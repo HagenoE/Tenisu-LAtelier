@@ -12,14 +12,14 @@ const playerDatamapper = {
     const connexion = await pool.connect()
 
     // const result = connexion.query('SELECT * FROM "players" order by "players"."data" ->>\'rank\' COLLATE "numeric" asc;')
-    const result = connexion.query(`
+    const result = await connexion.query(`
     SELECT "players".*, "data"."rank"
     FROM "players"
     JOIN "data" ON "players"."id" = "data"."players_id"
     ORDER BY "data"."rank";
    `)
     connexion.release()
-    return await result
+    return result
   },
 
   /**
@@ -44,10 +44,10 @@ const playerDatamapper = {
       values: [id]
     }
 
-    const result = connexion.query(query)
+    const result = await connexion.query(query)
 
     connexion.release()
-    return await result
+    return result
   }
 
 }

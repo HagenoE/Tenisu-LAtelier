@@ -3,27 +3,26 @@ import playerDatamapper from '../datamapper/player.datamapper'
 import CustomError from '../error/app.error'
 
 const playerController = {
-  getAllPlayer: async (req: Request, res: Response): Promise<void> => {
+  getAllPlayer: async (req: Request, res: Response) => {
     const result = await playerDatamapper.findAllPlayer()
 
     const players = result.rows
-    console.log(players)
-    res.status(200).json({ players })
+
+    return res.status(200).json({ players })
   },
 
-  getOnePlayer: async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  getOnePlayer: async (req: Request, res: Response, next: NextFunction) => {
     const { id } = req.params
     const result = await playerDatamapper.findOnePlayer(+id)
 
-    const player = result.rows
-    console.log(player)
+    const [player] = result.rows
 
     if (player.length === 0) {
       next(new CustomError(400, 'No player found'))
       return
     }
 
-    res.status(200).json({ player })
+    return res.status(200).json({ player })
   }
 }
 

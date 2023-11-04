@@ -6,7 +6,7 @@ import cors from 'cors'
 import helmet from 'helmet'
 
 import playerRouter from './route/player.route'
-// import statsRouter from './route/stats.route'
+import statsRouter from './route/stats.route'
 import globalErrorHandler from './error/errorHandler.error'
 
 const server = express()
@@ -37,7 +37,7 @@ server.use(multiparser.none())
 server.use(express.json())
 
 server.use('/player', playerRouter)
-// server.use('/stats', statsRouter)
+server.use('/stats', statsRouter)
 
 server.use(globalErrorHandler)
 

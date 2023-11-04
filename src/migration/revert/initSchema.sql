@@ -2,8 +2,8 @@
 
 BEGIN;
 
-DROP TABLE "data";
-DROP TABLE "country";
+DROP TABLE "data" CASCADE;
+DROP TABLE "country" CASCADE;
 DROP TABLE "players";
 
 COMMIT;
