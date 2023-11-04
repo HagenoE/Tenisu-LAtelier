@@ -19,5 +19,29 @@ export const PlayerSchema = z.object({
     age: z.number(),
     last: z.array(z.number())
   })
+})
+
+export const ConnexionSchema = z.object({
+  user: z.string().optional(),
+  host: z.string().optional(),
+  database: z.string().optional(),
+  password: z.string().optional(),
+  port: z.number().optional()
+})
+
+/**
+ * A typeguarded version of `instanceof Error` for NodeJS.
+ * @author Joseph JDBar Barron
+ * @link https://dev.to/jdbar
+ */
+export function instanceOfNodeError<T extends new (...args: any) => Error> (
+  value: Error,
+  errorType: T
+): value is InstanceType<T> & NodeJS.ErrnoException {
+  return value instanceof errorType
 }
-)
+
+export interface CustomErrorContent {
+  message: string
+  context?: Record<string, any>
+}

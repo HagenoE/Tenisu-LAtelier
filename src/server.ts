@@ -5,6 +5,10 @@ import rateLimit from 'express-rate-limit'
 import cors from 'cors'
 import helmet from 'helmet'
 
+import playerRouter from './route/player.route'
+// import statsRouter from './route/stats.route'
+import globalErrorHandler from './error/errorHandler.error'
+
 const server = express()
 
 const multiparser = multer()
@@ -31,4 +35,10 @@ server.use(limiter)
 server.use(express.urlencoded({ extended: true }))
 server.use(multiparser.none())
 server.use(express.json())
+
+server.use('/player', playerRouter)
+// server.use('/stats', statsRouter)
+
+server.use(globalErrorHandler)
+
 export default server

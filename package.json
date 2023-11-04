@@ -3,11 +3,10 @@
   "version": "1.0.0",
   "description": "Technical test for l'Atelier",
   "main": "app.js",
-  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node --env-file=.env ./dist/app.js",
-    "dev": "nodemon  src/app.ts",
+    "dev": "nodemon  ./src/app.ts",
     "lint": "eslint . --ext .ts",
     "build": "tsc -p ."
   },
@@ -38,6 +37,7 @@
     "@types/hpp": "^0.2.4",
     "@types/multer": "^1.4.9",
     "@types/node": "^20.8.10",
+    "@types/pg": "^8.10.7",
     "@typescript-eslint/eslint-plugin": "^6.4.0",
     "dotenv": "^16.3.1",
     "eslint": "^8.52.0",

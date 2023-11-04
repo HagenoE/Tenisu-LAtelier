@@ -1,14 +1,16 @@
-import { Pool } from 'pg'
+import pg from 'pg'
+import { type z } from 'zod'
+import { type ConnexionSchema } from '../@types/d'
 
-const connexionData = {
+const connexionData: z.infer<typeof ConnexionSchema> = {
   user: process.env.PGUSER,
   host: process.env.PGHOST,
   database: process.env.PGDATABASE,
   password: process.env.PGPASSWORD,
-  port: process.env.PGPORT
+  port: Number(process.env.PGPORT)
 }
 
-const pool = new Pool(connexionData)
+const pool = new pg.Pool(connexionData)
 
 pool.on('error', (err, client) => {
   console.error(err)
