@@ -3,6 +3,13 @@ import playerDatamapper from '../datamapper/player.datamapper'
 import CustomError from '../error/app.error'
 
 const playerController = {
+  /**
+   * Retrieves all players.
+   *
+   * @param {Request} req - The request object.
+   * @param {Response} res - The response object.
+   * @returns {Promise<void>} The response with the players.
+   */
   getAllPlayer: async (req: Request, res: Response) => {
     const result = await playerDatamapper.findAllPlayer()
 
@@ -10,7 +17,14 @@ const playerController = {
 
     return res.status(200).json({ players })
   },
-
+  /**
+ * Retrieves a single player by their ID.
+ *
+ * @param {Request} req - The request object.
+ * @param {Response} res - The response object.
+ * @param {NextFunction} next - The next middleware function.
+ * @returns {Response} The response with the player data.
+ */
   getOnePlayer: async (req: Request, res: Response, next: NextFunction) => {
     const { id } = req.params
     const result = await playerDatamapper.findOnePlayer(+id)

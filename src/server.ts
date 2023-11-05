@@ -8,6 +8,7 @@ import helmet from 'helmet'
 import playerRouter from './route/player.route'
 import statsRouter from './route/stats.route'
 import globalErrorHandler from './error/errorHandler.error'
+import doc from './doc/swagger.doc'
 
 const server = express()
 
@@ -40,5 +41,6 @@ server.use('/player', playerRouter)
 server.use('/stats', statsRouter)
 
 server.use(globalErrorHandler)
+doc(server)
 
 export default server

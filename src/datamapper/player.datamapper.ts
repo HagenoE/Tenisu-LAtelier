@@ -28,7 +28,6 @@ const playerDatamapper = {
  * @param {number} id - The ID of the player.
  * @return {Promise<any>} A promise that resolves to the result of the query.
  */
-
   findOnePlayer: async (id: number) => {
     const connexion = await pool.connect()
     const query = {

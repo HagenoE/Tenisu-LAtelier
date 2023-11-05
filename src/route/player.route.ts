@@ -6,9 +6,25 @@ import CustomError from '../error/app.error'
 
 const playerRouter = Router()
 
+/**
+ * @typedef {object} ErrorResponse Returned error to user into HTTP response
+ * @property {string} error error reason
+ */
+
 playerRouter.route('/')
+/**
+ * GET /player
+ * @summary return an array of all players recorded
+ * @return {PlayersResponse} 200 - success response
+ */
   .get(errorWrapper(playerController.getAllPlayer))
 playerRouter.route('/:id')
+/**
+ * GET /player/{:id}
+ * @summary return information of one player
+ * @return {PlayerResponse} 200 - success response
+ * @return {ErrorResponse} 400 - no data found
+ */
   .get(errorWrapper(playerController.getOnePlayer))
 
 playerRouter.all('*', (req, res, next) => {

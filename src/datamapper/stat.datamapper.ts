@@ -1,5 +1,10 @@
 import pool from '../data/connexion.data'
 const statsDatamapper = {
+  /**
+   * Retrieves the total winnings for each country.
+   *
+   * @return {Promise<any>} The result of the query.
+   */
   mostWinning: async () => {
     const connexion = await pool.connect()
 
@@ -15,6 +20,11 @@ const statsDatamapper = {
 
     return result
   },
+  /**
+ * Retrieves data for a player.
+ *
+ * @return {Promise<any>} The data for the player.
+ */
   getDataForPlayer: async () => {
     const connexion = await pool.connect()
 
