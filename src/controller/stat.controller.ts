@@ -4,6 +4,14 @@ import statsDatamapper from '../datamapper/stat.datamapper'
 import CustomError from '../error/app.error'
 
 const statsControlleur = {
+  /**
+   * Retrieves the most winning data from the database and returns it as a JSON response.
+   *
+   * @param {Request} req - The Express request object.
+   * @param {Response} res - The Express response object.
+   * @param {NextFunction} next - The Express next middleware function.
+   * @returns {Promise<void>} - The function does not return anything directly, but it sends a response to the client.
+   */
   getMostWinning: async (req: Request, res: Response, next: NextFunction) => {
     const dataFromDb = await statsDatamapper.mostWinning()
     const arrayToFilter = dataFromDb.rows
@@ -21,6 +29,15 @@ const statsControlleur = {
     console.log(findAllMaxValue)
     return res.status(200).json({ winner: findAllMaxValue })
   },
+
+  /**
+ * Calculates the average IMC (Body Mass Index) for players.
+ *
+ * @param {Request} req - The request object.
+ * @param {Response} res - The response object.
+ * @param {NextFunction} next - The next function to call.
+ * @returns {Response} The response object with the average IMC.
+ */
   averageImc: async (req: Request, res: Response, next: NextFunction) => {
     const datas = await statsDatamapper.getDataForPlayer()
 
@@ -38,6 +55,15 @@ const statsControlleur = {
 
     return res.status(200).json({ averageImc })
   },
+
+  /**
+   * Calculates the average height of players.
+   *
+   * @param {Request} req - The Express request object.
+   * @param {Response} res - The Express response object.
+   * @param {NextFunction} next - The Express next middleware function.
+   * @returns {Promise<void>} - The function does not return anything directly, but it sends a response to the client.
+   */
   averageHeight: async (req: Request, res: Response, next: NextFunction) => {
     const datas = await statsDatamapper.getDataForPlayer()
 

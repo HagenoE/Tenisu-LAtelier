@@ -8,6 +8,7 @@ Mise en place :
 - Dans un terminal ( ou invite de commande), lancer le script `npm i`
 - Puis `npm build`
 - Et enfin `npm start`
+- La documentation sera sur la route `/docs`
 
 Stack Technique:
 
@@ -31,6 +32,7 @@ How to launch the API :
 - In a terminal ( or command prompt if you are on windows os), launch script `npm i`
 - Then `npm build`
 - And `npm start` for finish
+- The swagger documentation is on route `/docs`
 
 Tools :
 

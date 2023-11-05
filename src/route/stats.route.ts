@@ -11,6 +11,24 @@ const statsRouter = Router()
  * @property {string} error error reason
  */
 
+/**
+* @typedef {object} StatImcResponse
+* @property {string} status - success
+* @property {string} averageImc - the avarage IMC value
+*/
+
+/**
+* @typedef {object} WinResponse
+* @property {string} status - success
+* @property {string} winner - array of the country who win the most
+*/
+
+/**
+* @typedef {object} AverageHeightResponse
+* @property {string} status - success
+* @property {string} winner - the mediane height value
+*/
+
 statsRouter.route('/win')
 /**
  * GET /stats/win
@@ -23,7 +41,7 @@ statsRouter.route('/imc')
 /**
  * GET /stats/imc
  * @summary return an array of all players recorded
- * @return {PlayersResponse} 200 - success response
+ * @return {StatImcResponse} 200 - success response
  *  @return {ErrorResponse} 400 - no data found
  */
   .get(errorWrapper(statsController.averageImc))
@@ -31,7 +49,7 @@ statsRouter.route('/hgt')
 /**
  * GET /stats/hgt
  * @summary return the medium height
- * @return {PlayersResponse} 200 - success response
+ * @return {AverageHeightResponse} 200 - success response
  *  @return {ErrorResponse} 400 - no data found
  */
   .get(errorWrapper(statsController.averageHeight))

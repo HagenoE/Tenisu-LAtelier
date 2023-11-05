@@ -11,6 +11,18 @@ const playerRouter = Router()
  * @property {string} error error reason
  */
 
+/**
+* @typedef {object} PlayersResponse
+* @property {string} status - success
+* @property {string} players - array of all players
+*/
+
+/**
+* @typedef {object} PlayerResponse
+* @property {string} status - success
+* @property {string} player - data of one player
+*/
+
 playerRouter.route('/')
 /**
  * GET /player
