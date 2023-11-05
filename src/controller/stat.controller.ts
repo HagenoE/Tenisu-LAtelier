@@ -26,7 +26,6 @@ const statsControlleur = {
     })
 
     const findAllMaxValue = arrayToFilter.filter((element) => element.total === findMaxValue.total)
-    console.log(findAllMaxValue)
     return res.status(200).json({ winner: findAllMaxValue })
   },
 
