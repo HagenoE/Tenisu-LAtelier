@@ -2,7 +2,6 @@
 import { Router } from 'express'
 import statsController from '../controller/stat.controller'
 import errorWrapper from '../error/errorWrapper.error'
-import CustomError from '../error/app.error'
 
 const statsRouter = Router()
 
@@ -53,9 +52,5 @@ statsRouter.route('/hgt')
  *  @return {ErrorResponse} 400 - no data found
  */
   .get(errorWrapper(statsController.averageHeight))
-
-statsRouter.all('*', (req, res, next) => {
-  next(new CustomError(404, 'Not Found'))
-})
 
 export default statsRouter

@@ -9,6 +9,7 @@ import playerRouter from './route/player.route'
 import statsRouter from './route/stats.route'
 import globalErrorHandler from './error/errorHandler.error'
 import doc from './doc/swagger.doc'
+import CustomError from './error/app.error'
 
 const server = express()
 
@@ -39,6 +40,10 @@ server.use(express.json())
 
 server.use('/player', playerRouter)
 server.use('/stats', statsRouter)
+
+server.all('*', (req, res, next) => {
+  next(new CustomError(404, 'Not Found'))
+})
 
 server.use(globalErrorHandler)
 doc(server)

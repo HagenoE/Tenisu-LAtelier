@@ -2,7 +2,6 @@
 import { Router } from 'express'
 import errorWrapper from '../error/errorWrapper.error'
 import playerController from '../controller/player.controller'
-import CustomError from '../error/app.error'
 
 const playerRouter = Router()
 
@@ -38,9 +37,5 @@ playerRouter.route('/:id')
  * @return {ErrorResponse} 400 - no data found
  */
   .get(errorWrapper(playerController.getOnePlayer))
-
-playerRouter.all('*', (req, res, next) => {
-  next(new CustomError(404, 'Not Found'))
-})
 
 export default playerRouter
