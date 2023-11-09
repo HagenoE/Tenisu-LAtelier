@@ -1,6 +1,0 @@
-%syntax-version=1.0.0
-%project=tenisu
-
-initSchema 2023-11-03T09:54:50Z System Administrator <root@macbook-air-de-edward.home> # all script for creating database table
-updateSequenceSchema 2023-11-03T10:25:59Z System Administrator <root@macbook-air-de-edward.home> # Update the sequece to the upper value
-createViewSchema 2023-11-04T15:40:10Z System Administrator <root@macbook-air-de-edward.home> # add view for step 3
