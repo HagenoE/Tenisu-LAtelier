@@ -1,0 +1,8 @@
+# [core]
+	# engine = pg
+	# top_dir = ./src/migration
+	# plan_file = ./src/migration/sqitch.plan
+[engine "pg"]
+	target = db:pg:nomBDD
+	# registry = sqitch
+	# client = psql
