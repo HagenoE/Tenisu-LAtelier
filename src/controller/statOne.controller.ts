@@ -1,7 +1,8 @@
 import { type NextFunction, type Request, type Response } from 'express'
-import statsDatamapper from '../datamapper/stat.datamapper'
-
+import statsOneDatamapper from '../datamapper/statOne.datamapper'
 import CustomError from '../error/app.error'
+import getImc from '../service/imc.service'
+import getAverageHeight from '../service/averageHeight.service'
 
 const statsControlleur = {
   /**
@@ -13,20 +14,15 @@ const statsControlleur = {
    * @returns {Promise<void>} - The function does not return anything directly, but it sends a response to the client.
    */
   getMostWinning: async (req: Request, res: Response, next: NextFunction) => {
-    const dataFromDb = await statsDatamapper.mostWinning()
-    const arrayToFilter = dataFromDb.rows
+    const dataFromDb = await statsOneDatamapper.mostWinning()
+    const result = dataFromDb.rows
 
-    if (arrayToFilter.length === 0) {
+    if (result.length === 0) {
       next(new CustomError(404, 'There is no winner recorded'))
       return
     }
 
-    const findMaxValue = arrayToFilter.reduce((prev, cur) => {
-      return prev.total > cur.total ? prev : cur
-    })
-
-    const findAllMaxValue = arrayToFilter.filter((element) => element.total === findMaxValue.total)
-    return res.status(200).json({ winner: findAllMaxValue })
+    return res.status(200).json({ winner: result })
   },
 
   /**
@@ -38,21 +34,17 @@ const statsControlleur = {
  * @returns {Response} The response object with the average IMC.
  */
   averageImc: async (req: Request, res: Response, next: NextFunction) => {
-    const datas = await statsDatamapper.getDataForPlayer()
+    const datas = await statsOneDatamapper.getDataForPlayer()
+
+    const dataArray = datas.rows.map((element) => element.data)
 
     if (datas.rows.length === 0) {
       next(new CustomError(404, 'No data found'))
       return
     }
-    const playerImc = datas.rows.map((element) => {
-      const imc = (element.weight / 1000) / ((element.height / 100) * (element.height / 100))
-      return imc
-    })
+    const result = getImc(dataArray)
 
-    const sumIMC = playerImc.reduce((acc, cur) => acc + cur, 0)
-    const averageImc = sumIMC / playerImc.length
-
-    return res.status(200).json({ averageImc })
+    return res.status(200).json({ averageImc: result })
   },
 
   /**
@@ -64,18 +56,15 @@ const statsControlleur = {
    * @returns {Promise<void>} - The function does not return anything directly, but it sends a response to the client.
    */
   averageHeight: async (req: Request, res: Response, next: NextFunction) => {
-    const datas = await statsDatamapper.getDataForPlayer()
+    const datas = await statsOneDatamapper.getDataForPlayer()
+
+    const dataArray = datas.rows.map((element) => element.data)
 
     if (datas.rows.length === 0) {
       next(new CustomError(404, 'No data found'))
       return
     }
-
-    // Create a new array with only the height and sort asc
-    const allHeight = datas.rows.map((element) => element.height).sort((a, b) => a - b)
-
-    const mid = Math.floor(allHeight.length / 2)
-    const result = allHeight[mid]
+    const result = getAverageHeight(dataArray)
 
     return res.status(200).json({ medianeHeight: result })
   }

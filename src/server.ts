@@ -6,7 +6,7 @@ import cors from 'cors'
 import helmet from 'helmet'
 
 import playerRouter from './route/player.route'
-import statsRouter from './route/stats.route'
+import statsRouter from './route/statsOne.route'
 import globalErrorHandler from './error/errorHandler.error'
 import doc from './doc/swagger.doc'
 import playerOneRouter from './route/playerOne.route'
@@ -52,5 +52,4 @@ doc(server)
 
 export default server
 
-// TODO: faire l'API avec une table
 // TODO: faire la version mongo

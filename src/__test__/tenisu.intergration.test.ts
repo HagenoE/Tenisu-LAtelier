@@ -31,31 +31,52 @@ describe('Test player route', () => {
     })
   })
   it('Test route /player/:id', async () => {
-    const id = 152
+    const id = 2
     const res = await request(app).get(`/player/${id}`)
     const player = res.body.player
+    const toto = {
+      id: 52,
+      firstname: 'Novak',
+      lastname: 'Djokovic',
+      shortname: 'N.DJO',
+      toto: 'toto',
+      country: {
+        picture: 'https://data.latelier.co/training/tennis_stats/resources/Serbie.png',
+        code: 'SRq'
+      },
+      picture: 'https://data.latelier.co/training/tennis_stats/resources/Djokovic.png',
+      data: {
+        rank: 2,
+        points: 2542,
+        weight: 80000,
+        height: 188,
+        age: 31,
+        last: [1, 1, 1, 1, 1]
+      }
+    }
     test('Response must be find', () => {
       expect(res.header['content-type']).toMatch(/json/)
       expect(res.statusCode).toBe(200)
     })
     test('Response body for one player', () => {
       expect(player).toBe('array')
-      expect(player.length).toBeGreaterThan(0)
+      expect(player.length).toBeGreaterThan(10)
       describe.each(player)('Check all datas', () => {
-        expect(player).toHaveProperty('id')
-        expect(player).toHaveProperty('lastname')
-        expect(player).toHaveProperty('firstname')
-        expect(player).toHaveProperty('shortname')
-        expect(player).toHaveProperty('sex')
-        expect(player).toHaveProperty('picture')
-        expect(player).toHaveProperty('rate')
-        expect(player.id).toBe('string')
-        expect(typeof player.lastname).toBe('string')
-        expect(typeof player.firstname).toBe('string')
-        expect(typeof player.shortname).toBe('string')
-        expect(typeof player.sex).toBe('string')
-        expect(typeof player.picture).toBe('string')
-        expect(typeof player.rate).toBe('number')
+        // expect(player).toHaveProperty('id')
+        // expect(player).toHaveProperty('lastname')
+        // expect(player).toHaveProperty('firstname')
+        // expect(player).toHaveProperty('shortname')
+        // expect(player).toHaveProperty('sex')
+        // expect(player).toHaveProperty('picture')
+        // expect(player).toHaveProperty('rate')
+        // expect(player.id).toBe('string')
+        // expect(typeof player.lastname).toBe('string')
+        // expect(typeof player.firstname).toBe('string')
+        // expect(typeof player.shortname).toBe('string')
+        // expect(typeof player.sex).toBe('string')
+        // expect(typeof player.picture).toBe('string')
+        // expect(typeof player.rate).toBe('number')
+        expect(player).toStrictEqual(toto)
       })
     })
   })
@@ -64,8 +85,8 @@ describe('Test player route', () => {
     const res = await request(app).get(`/player/${id}`)
 
     test('Error must be find', () => {
-      expect(res.header['content-type']).toMatch(/json/)
-      expect(res.statusCode).toBe(400)
+      expect(res.header['content-type']).toMatch('xxxq')
+      expect(res.statusCode).toBe(404)
     })
   })
 })

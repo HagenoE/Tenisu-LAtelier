@@ -1,7 +1,7 @@
 import { open } from 'node:fs/promises'
 import dataJson from './data.json' assert { type: 'json' }
 
-let playerData2 = 'BEGIN; \n INSERT INTO "players2" \n("id", "firstname", "lastname", "shortname", "sex", "country", "picture", "data") \n VALUES \n'
+let playerData2 = 'BEGIN; \n INSERT INTO "players_one" \n("id", "firstname", "lastname", "shortname", "sex", "country", "picture", "data") \n VALUES \n'
 let playerTable = 'BEGIN; \n INSERT INTO "players" \n("id", "firstname", "lastname", "shortname", "sex", "picture") \n VALUES \n'
 let playerCountry = '\nINSERT INTO "country" \n("picture", "code", "players_id") \n VALUES \n'
 let playerData = '\n INSERT INTO "data" \n("rank", "points", "weight", "height", "age", "last", "players_id") \n VALUES \n'

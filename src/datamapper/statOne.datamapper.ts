@@ -1,5 +1,5 @@
 import pool from '../data/connexion.data'
-const statsDatamapper = {
+const statsOneDatamapper = {
   /**
    * Retrieves the total winnings for each country.
    *
@@ -10,8 +10,8 @@ const statsDatamapper = {
 
     const result = await connexion.query(
     `
-    select * from ranking
-    where total = ( select MAX(total) from ranking)
+    select * from ranking_one 
+    where total = ( select MAX(total) from ranking_one)
     `)
 
     connexion.release()
@@ -28,7 +28,7 @@ const statsDatamapper = {
 
     const result = await connexion.query(
       `
-      SELECT * FROM "data";
+      SELECT "players"."data" FROM "players_one" as players;
       `
     )
     connexion.release()
@@ -36,4 +36,4 @@ const statsDatamapper = {
   }
 }
 
-export default statsDatamapper
+export default statsOneDatamapper
